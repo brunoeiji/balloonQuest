@@ -24,7 +24,9 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
+//            scene.scaleMode = .AspectFill
+            
+            scene.size = skView.bounds.size
             
             skView.presentScene(scene)
         }

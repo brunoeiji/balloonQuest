@@ -21,9 +21,13 @@ class GameScene: SKScene {
         self.addChild(myLabel)
         
         let sprite = SKSpriteNode(imageNamed: "Spaceship")
-        sprite.position = CGPoint(x: 332, y: CGRectGetMidY(self.frame))
+        
+        let xPosition = CGRectGetMinX(self.frame) + 35
+        
+        sprite.position = CGPoint(x: xPosition, y: CGRectGetMidY(self.frame))
         sprite.xScale = 0.2
         sprite.yScale = 0.2
+        //sprite.zRotation = -1.55
         
         self.addChild(sprite)
     }
@@ -31,23 +35,8 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
         
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            print(location)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+        
+        
     }
    
     override func update(currentTime: CFTimeInterval) {
