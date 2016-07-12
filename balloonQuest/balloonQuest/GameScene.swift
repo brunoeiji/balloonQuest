@@ -25,12 +25,17 @@ class GameScene: SKScene {
         sprite.position = CGPoint(x: 332, y: CGRectGetMidY(self.frame))
         sprite.xScale = 0.2
         sprite.yScale = 0.2
+        sprite.physicsBody?.dynamic = true
+        sprite.physicsBody?.allowsRotation = false
+        sprite.physicsBody?.affectedByGravity = true
+    
         
         self.addChild(sprite)
     }
 
     func setPhysics(){
         self.physicsWorld.gravity = CGVectorMake(0, 2.5)
+    
     }
         
 
