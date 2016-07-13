@@ -61,20 +61,44 @@ class GameScene: SKScene {
         
         
         let monster = SKSpriteNode(imageNamed: "monster")
+        monster.size = CGSizeMake(playerNode.size.width/2, playerNode.size.height/2)
         
-        let minX = self.frame.minX
+        let minY = monster.size.height/2
+        let maxY = 730 - monster.size.height/2
+        let rangeY = maxY - minY
+        let actualY = (arc4random_uniform(UInt32(rangeY))) + UInt32(minY)
         
-        let minY = self.frame.minY + monster.size.height/2
         
-        let maxX = self.frame.maxX
+        monster.position = CGPointMake(self.frame.size.width + monster.size.width/2, CGFloat(actualY))
+        monster.physicsBody?.dynamic = true
+        monster.physicsBody?.allowsRotation = false
+        monster.physicsBody?.affectedByGravity = false
+        self.addChild(monster)
         
-        let maxY = self.frame.maxY - monster.size.height/2
+        let minDuration = 4.0
+        let maxDuration = 7.0
+        let rangeDuration = maxDuration - minDuration
+        let actualDuration = (arc4random_uniform(UInt32(rangeDuration))) + UInt32(minDuration)
         
-        monster.position = CGPointMake(rand(minX, max: maxX), rand(minY,max: maxY))
+        let locationToMove = CGPointMake(-monster.size.width/2, CGFloat(actualY))
+        let move = SKAction.moveTo(locationToMove, duration: Double(actualDuration))
+        let moveDone = SKAction.removeFromParent()
+        monster.runAction(SKAction.sequence([move, moveDone]))
         
-        let finalPosition = CGPointMake(monster.position.x, 0)
         
-        let action = SKAction.moveTo(finalPosition, duration: 0.7)
+//        let minX = self.frame.minX
+//        
+//        let minY = self.frame.minY + monster.size.height/2
+//        
+//        let maxX = self.frame.maxX
+//        
+//        let maxY = self.frame.maxY - monster.size.height/2
+//        
+//        monster.position = CGPointMake(rand(minX, max: maxX), rand(minY,max: maxY))
+//        
+//        let finalPosition = CGPointMake(monster.position.x, 0)
+//        
+//        let action = SKAction.moveTo(finalPosition, duration: 0.7)
         
     }
     
@@ -125,7 +149,6 @@ class GameScene: SKScene {
         
         let finalPosition = CGPointMake(x, y)
         
-        let hipotenusa
         
     }
     
